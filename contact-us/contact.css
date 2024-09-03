@@ -1,0 +1,36 @@
+.num2 {
+    width: 100%;
+    height: 50nh;
+    overflow: hidden;
+    position: relative;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 5s;
+    animation-name: animate;
+    animation-direction: alternate-reverse;
+    animation-duration: 30s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes animate {
+    0% {
+        background-image: url(/src/shop/shop-pic/background/2.jpg);
+    }
+    25% {
+        background-image: url(/src/shop/shop-pic/background/3.jpg);
+    }
+    50% {
+        background-image: url(/src/shop/shop-pic/background/4.jpg);
+    }
+    75% {
+        background-image: url(/src/shop/shop-pic/background/5.jpg);
+    }
+    100% {
+        background-image: url(/src/shop/shop-pic/background/1.jpg);
+    }
+}

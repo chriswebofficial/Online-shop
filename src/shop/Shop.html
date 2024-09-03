@@ -1,0 +1,1945 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/shop/Shop.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="md:flex md:justify-between bg-black fixed w-full z-10">
+      <div class="flex items-center justify-between p-4">
+        <a class="text-white text-2xl font-bold" href="/src/index.html">
+          G <span class="text-orange-500 text-4xl">I</span> X
+        </a>
+
+        <button
+          id="menu-btn"
+          class="text-white block md:hidden focus:outline-none"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <ul
+        id="menu"
+        class="hidden flex-col md:flex md:flex-row md:items-center md:space-x-4 bg-black md:bg-transparent w-full md:w-auto absolute top-full left-0 md:static"
+      >
+        <li class="mx-2">
+          <a
+            href="/src/index.html"
+            class="block text-white hover:underline py-2 px-4"
+            >Home</a
+          >
+        </li>
+        <li class="mx-2">
+          <a href="#" class="block text-white hover:underline py-2 px-4"
+            >Shop
+          </a>
+        </li>
+
+        <li class="mx-2">
+          <a
+            href="/contact-us/contact.html"
+            class="block text-white hover:underline py-2 px-4"
+          >
+            Contact Us</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <script>
+      // this is the java script code that toggles the hambuger menu .
+      const menuBtn = document.getElementById("menu-btn");
+      const menu = document.getElementById("menu");
+
+      menuBtn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+    </script>
+    <div>
+      <div class="num2">
+        <div class="text-center p-4 pt-40 sm:pt-40 md:pt-36 lg:pt-36 xl:pt-80">
+          <h2 class="text-white font-bold text-4xl md:text-5xl lg:text-6xl">
+            SHOP !
+          </h2>
+        </div>
+      </div>
+      <div
+        class="p-3 sm:p-4 md:p-6 lg:p-8 bg-black flex items-center justify-center"
+      >
+        <p
+          class="text-white text-center text-sm sm:text-base md:text-lg lg:text-xl hover:text-orange-500 duration-300"
+        >
+          Free Delivery in Nigeria / Same Day Shipping
+        </p>
+      </div>
+      <div>
+      
+        <style>
+          .slider {
+            scroll-snap-type: x mandatory;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+          }
+          .slider::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+          }
+          .slide {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            width: 80%; /* Adjust card width here */
+            max-width: 300px;
+          }
+          .arrow {
+            cursor: pointer;
+            background-color: rgba(172, 120, 9, 0.5);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            
+          }
+          .arrow-left {
+            left: 1rem;
+          }
+          .arrow-right {
+            right: 1rem;
+          }
+      /* Cart Styles */
+        .cart-container {
+            position: fixed;
+            top: 0;
+            right: -100%; /* Hidden off-screen initially */
+            width: 300px;
+            height: 100%;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.514);
+            backdrop-filter: blur(10px); /* Blur effect */
+            border-left: 1px solid #f97416b7;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+        }
+        .cart-container.active {
+            right: 0; /* Slide in cart */
+        }
+        .cart-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .cart-items {
+            max-height: 70%;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        .cart-item {
+            margin-bottom: 10px;
+        }
+        .cart-total {
+            font-weight: bold;
+        }
+        .close-cart {
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: none;
+            color: white;
+            padding: 5px;
+            border-radius: 50%;
+        }
+        </style>
+          
+          <body class="bg-gray-100">
+              <div class="relative max-w-screen-xl mx-auto py-8">
+                  <h2 class="text-3xl font-bold text-center mb-8">Headphone.</h2>
+                  
+                  <!-- Cart Container -->
+                  <div class="cart-container" id="cartContainer">
+                      <div class="cart-title">Cart</div>
+                      <div class="close-cart bg-orange-500" onclick="toggleCart()">X</div>
+                      <div class="cart-items" id="cartItems">
+                          No items in cart.
+                        </div>
+                        <div class="cart-total text-green-400" id="cartTotal">Total: 0 Naira</div>
+                        <button id="submitBtn" type="button"
+                        class="w-full py-2 px-4 bg-orange-500 text-white hover:bg-slate-300 hover:text-black font-semibold rounded-md shadow duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Submit
+                    </button>
+                </div>
+                
+                <!-- This is the lightbox Modal -->
+                <div id="thankYouModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+                    <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm mx-auto text-center">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">We can't accept online orders right now</h2>
+                        <p class="text-gray-700 mb-6">Please contact us to complete your purchase.</p>
+                        <button id="closeModal" class="py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                            Got it
+                        </button>
+                    </div>
+                </div>
+                <script>
+                    // Get the modal and button elements
+                    const submitBtn = document.getElementById('submitBtn');
+                    const thankYouModal = document.getElementById('thankYouModal');
+                    const closeModalButton = document.getElementById('closeModal');
+                    
+                    // Function to show the modal
+                    function showThankYouModal() {
+                        thankYouModal.classList.remove('hidden');
+                    }
+                    
+                    // Function to hide the modal
+                    closeModalButton.addEventListener('click', function() {
+                        thankYouModal.classList.add('hidden');
+                    });
+                    
+                    // Show the modal when the submit button is 
+                    
+                    submitBtn.addEventListener('click', showThankYouModal);
+                    
+
+            </script>
+              <!-- Slider Container -->
+              <div class="slider flex space-x-4 p-4">
+
+            <!-- Card 1 -->
+            <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="/src/images/pic3.jpg" alt="Card Image 1" class="w-full h-48 object-cover">
+              <div class="p-4">
+                <h3 class="text-xl font-bold">Beats</h3>
+                <p class="text-gray-600 mt-2">Solo3 Wireless On-Ear Headphones - Apple W1 Headphone Chip, Class 1 Bluetooth, 40 Hours of Listening Time, Built-in Microphone - Satin Silver (Latest Model).</p>
+                <p class="font-bold">PRICE <span class="font-light text-red-700">64,000 Naira</span></p>
+                <a href="#" id="more-card1" class="text-blue-500 hover:underline mt-4 inline-block">More Detail</a><br><br>
+                <a href="#" class="inline-block">
+                  <button class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300" onclick="addToCart('Beats', 64000)">
+                   Add to Cart
+                 </button>
+                </a>
+              </div>
+           </div>
+  
+            <!-- Lightbox Modal for Product Details -->
+            <div id="productDetailModal-card1" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+              <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+                <h2 id="modalProductTitle-card1" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+                <img id="modalProductImage-card1" src="" alt="Product Image" class="w-full h-60 object-cover mb-4">
+                <p id="modalProductDescription-card1" class="text-gray-700 mb-4"></p>
+                <p class="font-bold">PRICE: <span id="modalProductPrice-card1" class="font-light text-red-700"></span></p>
+                <button id="closeProductModal-card1" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                  Close
+               </button>
+              </div>
+            </div>
+           <script>
+             // Get the modal and button elements for Card 1
+          const productDetailModalCard1 = document.getElementById('productDetailModal-card1');
+          const closeProductModalButtonCard1 = document.getElementById('closeProductModal-card1');
+
+          // Function to show the modal with product details for Card 1
+          function showProductDetailModalCard1(title, imageSrc, description, price) {
+            document.getElementById('modalProductTitle-card1').textContent = title;
+            document.getElementById('modalProductImage-card1').src = imageSrc;
+            document.getElementById('modalProductDescription-card1').textContent = description;
+            document.getElementById('modalProductPrice-card1').textContent = price;
+            productDetailModalCard1.classList.remove('hidden');
+}
+
+          // Function to hide the modal for Card 1
+          closeProductModalButtonCard1.addEventListener('click', function() {
+            productDetailModalCard1.classList.add('hidden');
+});
+
+          // Attach event listener to the "More Detail" link for Card 1
+          document.getElementById('more-card1').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // Define product details for Card 1
+            const title = 'Beats';
+            const imageSrc = '/src/images/pic3.jpg';
+            const description = 'Solo3 Wireless On-Ear Headphones - Apple W1 Headphone Chip, Class 1 Bluetooth, 40 Hours of Listening Time, Built-in Microphone - Satin Silver (Latest Model).';
+            const price = '64,000 Naira';
+
+             // Show the modal with the product details
+             showProductDetailModalCard1(title, imageSrc, description, price);
+});
+
+              </script>
+  
+        
+        <!-- Card 2 -->
+            <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+               <img src="/src/images/pic5.jpg" alt="Card Image 2" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">SONY</h3>
+                   <p class="text-gray-600 mt-2">STUDIO MONITOR SOUND FOR MIXING & MASTERING: Supports Mixing and Mastering of Immersive/Spatial and Stereo Sound with High-Resolution capability.</p>
+                   <p class="font-bold">PRICE <span class="font-light text-red-700">64,000 Thousand Naira</span></p>
+                    <a href="#" id="more-card2" class="text-blue-500 hover:underline mt-4 inline-block">More Detail</a><br><br>
+                    <a href="#" class="inline-block">
+                       <button
+                           class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300"
+                           onclick="addToCart('SONY', 64000)"
+                           >
+                               Add to Cart
+                         </button>
+                       </a>
+                    </div>
+                </div>
+
+        <!-- Lightbox Modal for Product Details -->
+        <div id="card2DetailModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+            <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+               <h2 id="card2ModalTitle" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+                <img id="card2ModalImage" src="" alt="Product Image" class="w-full h-60 object-cover mb-4">
+               <p id="card2ModalDescription" class="text-gray-700 mb-4"></p>
+                <p class="font-bold">PRICE: <span id="card2ModalPrice" class="font-light text-red-700"></span></p>
+                <button id="card2CloseModal" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                    Close
+               </button>
+            </div>
+        </div>
+
+        <script>
+           // Get the modal and button elements for Card 2
+           const card2DetailModal = document.getElementById('card2DetailModal');
+            const card2CloseModalButton = document.getElementById('card2CloseModal');
+
+           // Function to show the modal with product details for Card 2
+           function showCard2DetailModal(title, imageSrc, description, price) {
+                document.getElementById('card2ModalTitle').textContent = title;
+                document.getElementById('card2ModalImage').src = imageSrc;
+                document.getElementById('card2ModalDescription').textContent = description;
+               document.getElementById('card2ModalPrice').textContent = price;
+                card2DetailModal.classList.remove('hidden');
+    }
+
+           // Function to hide the modal
+           card2CloseModalButton.addEventListener('click', function() {
+               card2DetailModal.classList.add('hidden');
+    });
+
+           // Attach event listener to the "More Detail" link for Card 2
+           document.getElementById('more-card2').addEventListener('click', function(event) {
+               event.preventDefault();
+
+                // Define product details for Card 2
+                const title = 'SONY';
+               const imageSrc = '/src/images/pic5.jpg';
+               const description = 'STUDIO MONITOR SOUND FOR MIXING & MASTERING: Supports Mixing and Mastering of Immersive/Spatial and Stereo Sound with High-Resolution capability.';
+               const price = '64,000 Thousand Naira';
+
+        // Show the modal with the product details
+               showCard2DetailModal(title, imageSrc, description, price);
+    });
+</script>
+
+               <!-- Card 3 -->
+        <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+            <img src="/src/images/pic3.jpg" alt="Card Image 3" class="w-full h-48 object-cover">
+            <div class="p-4">
+             <h3 class="text-xl font-bold">Samsung Galaxy Buds</h3>
+             <p class="text-gray-600 mt-2">Samsung Galaxy Buds Live, True Wireless Earbuds with Active Noise Cancelling, Mystic Bronze color, and ergonomic fit.</p>
+              <p class="font-bold">PRICE <span class="font-light text-red-700">50,000 Naira</span></p>
+              <a href="#" id="more-card3" class="text-blue-500 hover:underline mt-4 inline-block">More Detail</a><br><br>
+              <a href="#" class="inline-block">
+               <button class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300" onclick="addToCart('Samsung Galaxy Buds', 50000)">
+                        Add to Cart
+        </button>
+             </a>
+           </div>
+         </div>
+  
+          <!-- Lightbox Modal for Product Details -->
+          <div id="productDetailModal-card3" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+            <d        iv class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+      <h2 id="modalProductTitle-card3" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+             <img id="modalProductImage-card3" src="" alt="Product Image" class="w-full h-60 object-cover mb-4">
+              <p id="modalProductDescription-card3" class="text-gray-700 mb-4"></p>
+              <p class="font-bold">PRICE: <span id="modalProductPrice-card3" class="font-light text-red-700"></span></p>
+              <button id="closeProductModal-card3" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+               Close
+              </button>
+            </div>
+          </div>
+<script>
+           // Get the modal and button elements for Card 3
+        const productDetailModalCard3 = document.getElementById('productDetailModal-card3');
+        const closeProductModalButtonCard3 = document.getElementById('closeProductModal-card3');
+
+        // Function to show the modal with product details for Card 3
+        function showProductDetailModalCard3(title, imageSrc, description, price) {
+         document.getElementById('modalProductTitle-card3').textContent = title;
+         document.getElementById('modalProductImage-card3').src = imageSrc;
+          document.getElementById('modalProductDescription-card3').textContent = description;
+          document.getElementById('modalProductPrice-card3').textContent = price;
+         productDetailModalCard3.classList.remove('hidden');
+}
+
+          // Function to hide the modal for Card 3
+          closeProductModalButtonCard3.addEventListener('click', function() {
+            productDetailModalCard3.classList.add('hidden');
+});
+
+          // Attach event listener to the "More Detail" link for Card 3
+          document.getElementById('more-card3').addEventListener('click', function(event) {
+            event.preventDefault();
+
+           // Define product details for Card 3
+           const title = 'Samsung Galaxy Buds';
+           const imageSrc = '/src/images/pic3.jpg';
+           const description = 'Samsung Galaxy Buds Live, True Wireless Earbuds with Active Noise Cancelling, Mystic Bronze color, and ergonomic fit.';
+           const price = '50,000 Naira';
+
+           // Show the modal with the product details
+           showProductDetailModalCard3(title, imageSrc, description, price);
+});
+
+</script>  
+            <!-- Card 4 -->
+        <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="/src/images/pic7.jpg" alt="Card Image 4" class="w-full h-48 object-cover">
+              <div class="p-4">
+                <h3 class="text-xl font-bold">LORELEI</h3>
+               <p class="text-gray-600 mt-2">These headphones with microphone adopt High-definition 40mm driver and compact earcups design, which deliver exceptionally clear sound with full dynamic range and rich bass.</p>
+               <p class="font-bold">PRICE <span class="font-light text-red-700">64,000 Thousand Naira</span></p>
+               <a href="#" id="more-card4" class="text-blue-500 hover:underline mt-4 inline-block">More Detail</a><br><br>
+               <a href="#" class="inline-block">
+                  <button class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300" onclick="addToCart('LORELEI', 64000)">
+                   Add to Cart
+                 </button>
+               </a>
+             </div>
+            </div>
+  
+           <!-- Lightbox Modal for Product Details -->
+            <div id="productDetailModal-card4" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+             <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+               <h2 id="modalProductTitle-card4" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+                <img id="modalProductImage-card4" src="" alt="Product Image" class="w-full h-60 object-cover mb-4">
+               <p id="modalProductDescription-card4" class="text-gray-700 mb-4"></p>
+      <p class="font-bold">PRICE: <span id="modalProductPrice-card4" class="font-light text-red-700"></span></p>
+      <button id="closeProductModal-card4" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                  Close
+               </button>
+             </div>
+            </div>
+          <script>
+             // Get the modal and button elements for Card 4
+          const productDetailModalCard4 = document.getElementById('productDetailModal-card4');
+          const closeProductModalButtonCard4 = document.getElementById('closeProductModal-card4');
+
+          // Function to show the modal with product details for Card 4
+          function showProductDetailModalCard4(title, imageSrc, description, price) {
+            document.getElementById('modalProductTitle-card4').textContent = title;
+            document.getElementById('modalProductImage-card4').src = imageSrc;
+            document.getElementById('modalProductDescription-card4').textContent = description;
+            document.getElementById('modalProductPrice-card4').textContent = price;
+            productDetailModalCard4.classList.remove('hidden');
+}
+
+          // Function to hide the modal for Card 4
+          closeProductModalButtonCard4.addEventListener('click', function() {
+            productDetailModalCard4.classList.add('hidden');
+});
+
+          // Attach event listener to the "More Detail" link for Card 4
+          document.getElementById('more-card4').addEventListener('click', function(event) {
+            event.preventDefault();
+
+           // Define product details for Card 4
+           const title = 'LORELEI';
+            const imageSrc = '/src/images/pic7.jpg';
+            const description = 'These headphones with microphone adopt High-definition 40mm driver and compact earcups design, which deliver exceptionally clear sound with full dynamic range and rich bass.';
+            const price = '64,000 Thousand Naira';
+
+            // Show the modal with the product details
+            showProductDetailModalCard4(title, imageSrc, description, price);
+});
+
+</script>  
+           
+         <!-- Card 5 -->
+                <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+    <img src="/src/images/pic8.jpg" alt="Card Image 5" class="w-full h-48 object-cover">
+    <div class="p-4">
+      <h3 class="text-xl font-bold">BERIBES</h3>
+      <p class="text-gray-600 mt-2">65H Playtime and 6 EQ Music Modes Wireless Headphones with Microphone, HiFi Stereo Foldable Lightweight Headset, Deep Bass for Home Office, Cellphone, PC, etc.</p>
+      <p class="font-bold">PRICE <span class="font-light text-red-700">64,000 Thousand Naira</span></p>
+      <a href="#" id="more-card5" class="text-blue-500 hover:underline mt-4 inline-block">More Detail</a><br><br>
+      <a href="#" class="inline-block">
+        <button class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300" onclick="addToCart('BERIBES', 64000)">
+          Add to Cart
+        </button>
+      </a>
+    </div>
+                 </div>
+  
+         <!-- Lightbox Modal for Product Details -->
+                 <div id="productDetailModal-card5" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+    <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+      <h2 id="modalProductTitle-card5" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+      <img id="modalProductImage-card5" src="" alt="Product Image" class="w-full h-60 object-cover mb-4">
+      <p id="modalProductDescription-card5" class="text-gray-700 mb-4"></p>
+      <p class="font-bold">PRICE: <span id="modalProductPrice-card5" class="font-light text-red-700"></span></p>
+      <button id="closeProductModal-card5" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+        Close
+      </button>
+    </div>
+          </div>
+                <script>
+    // Get the modal and button elements for Card 5
+const productDetailModalCard5 = document.getElementById('productDetailModal-card5');
+const closeProductModalButtonCard5 = document.getElementById('closeProductModal-card5');
+
+// Function to show the modal with product details for Card 5
+function showProductDetailModalCard5(title, imageSrc, description, price) {
+  document.getElementById('modalProductTitle-card5').textContent = title;
+  document.getElementById('modalProductImage-card5').src = imageSrc;
+  document.getElementById('modalProductDescription-card5').textContent = description;
+  document.getElementById('modalProductPrice-card5').textContent = price;
+  productDetailModalCard5.classList.remove('hidden');
+}
+
+// Function to hide the modal for Card 5
+closeProductModalButtonCard5.addEventListener('click', function() {
+  productDetailModalCard5.classList.add('hidden');
+});
+
+// Attach event listener to the "More Detail" link for Card 5
+document.getElementById('more-card5').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Define product details for Card 5
+  const title = 'BERIBES';
+  const imageSrc = '/src/images/pic8.jpg';
+  const description = '65H Playtime and 6 EQ Music Modes Wireless Headphones with Microphone, HiFi Stereo Foldable Lightweight Headset, Deep Bass for Home Office, Cellphone, PC, etc.';
+  const price = '64,000 Thousand Naira';
+
+  // Show the modal with the product details
+  showProductDetailModalCard5(title, imageSrc, description, price);
+});
+
+               </script>  
+
+        <!-- Card 6 -->
+                <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+    <img src="/src/images/pic9.jpg" alt="Card Image 6" class="w-full h-48 object-cover">
+    <div class="p-4">
+      <h3 class="text-xl font-bold">Edifier</h3>
+      <p class="text-gray-600 mt-2">Active Noise Cancelling Headphones, Clear Calls with Deep Noise Reduction, Bluetooth Headphones with LDAC for Hi-Res Wireless Audio Comfortable Fit, Bluetooth 5.2</p>
+      <p class="font-bold">PRICE <span class="font-light text-red-700">64,000 Thousand Naira</span></p>
+      <a href="#" id="more-card6" class="text-blue-500 hover:underline mt-4 inline-block">More Detail</a><br><br>
+      <a href="#" class="inline-block">
+        <button class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300" onclick="addToCart('Edifier', 64000)">
+          Add to Cart
+        </button>
+      </a>
+    </div>
+          </div>
+  
+         <!-- Lightbox Modal for Product Details -->
+                  <div id="productDetailModal-card6" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+    <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+      <h2 id="modalProductTitle-card6" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+      <img id="modalProductImage-card6" src="" alt="Product Image" class="w-full h-60 object-cover mb-4">
+      <p id="modalProductDescription-card6" class="text-gray-700 mb-4"></p>
+      <p class="font-bold">PRICE: <span id="modalProductPrice-card6" class="font-light text-red-700"></span></p>
+      <button id="closeProductModal-card6" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+        Close
+      </button>
+    </div>
+         </div>
+            <script>
+    // Get the modal and button elements for Card 6
+const productDetailModalCard6 = document.getElementById('productDetailModal-card6');
+const closeProductModalButtonCard6 = document.getElementById('closeProductModal-card6');
+
+// Function to show the modal with product details for Card 6
+function showProductDetailModalCard6(title, imageSrc, description, price) {
+  document.getElementById('modalProductTitle-card6').textContent = title;
+  document.getElementById('modalProductImage-card6').src = imageSrc;
+  document.getElementById('modalProductDescription-card6').textContent = description;
+  document.getElementById('modalProductPrice-card6').textContent = price;
+  productDetailModalCard6.classList.remove('hidden');
+}
+
+// Function to hide the modal for Card 6
+closeProductModalButtonCard6.addEventListener('click', function() {
+  productDetailModalCard6.classList.add('hidden');
+});
+
+// Attach event listener to the "More Detail" link for Card 6
+document.getElementById('more-card6').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Define product details for Card 6
+  const title = 'Edifier';
+  const imageSrc = '/src/images/pic9.jpg';
+  const description = 'Active Noise Cancelling Headphones, Clear Calls with Deep Noise Reduction, Bluetooth Headphones with LDAC for Hi-Res Wireless Audio Comfortable Fit, Bluetooth 5.2';
+  const price = '64,000 Thousand Naira';
+
+  // Show the modal with the product details
+  showProductDetailModalCard6(title, imageSrc, description, price);
+});
+
+                   </script>  
+             <!-- Card 7 -->
+               <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+    <img src="/src/images/pic10.jpg" alt="Card Image 7" class="w-full h-48 object-cover">
+    <div class="p-4">
+      <h3 class="text-xl font-bold">Picun</h3>
+      <p class="text-gray-600 mt-2">120 Hours Headphones Wireless Bluetooth, Hands-Free Calls, 3EQ & Game Mode, Foldable Headphones Over Ear for Travel Home Office Cellphone PC</p>
+      <p class="font-bold">PRICE <span class="font-light text-red-700">64,000 Thousand Naira</span></p>
+      <a href="#" id="more-card7" class="text-blue-500 hover:underline mt-4 inline-block">More Detail</a><br><br>
+      <a href="#" class="inline-block">
+        <button class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300" onclick="addToCart('Picun', 64000)">
+          Add to Cart
+        </button>
+      </a>
+    </div>
+                </div>
+  
+          <!-- Lightbox Modal for Product Details -->
+                 <div id="productDetailModal-card7" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+                      <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+      <h2 id="modalProductTitle-card7" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+      <img id="modalProductImage-card7" src="" alt="Product Image" class="w-full h-60 object-cover mb-4">
+      <p id="modalProductDescription-card7" class="text-gray-700 mb-4"></p>
+      <p class="font-bold">PRICE: <span id="modalProductPrice-card7" class="font-light text-red-700"></span></p>
+      <button id="closeProductModal-card7" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+        Close
+      </button>
+    </div>
+                  </div>
+                 <script>
+           // Get the modal and button elements for Card 7
+          const productDetailModalCard7 = document.getElementById('productDetailModal-card7');
+          const closeProductModalButtonCard7 = document.getElementById('closeProductModal-card7');
+
+          // Function to show the modal with product details for Card 7
+          function showProductDetailModalCard7(title, imageSrc, description, price) {
+           document.getElementById('modalProductTitle-card7').textContent = title;
+           document.getElementById('modalProductImage-card7').src = imageSrc;
+           document.getElementById('modalProductDescription-card7').textContent = description;
+           document.getElementById('modalProductPrice-card7').textContent = price;
+           productDetailModalCard7.classList.remove('hidden');
+}
+
+          // Function to hide the modal for Card 7
+          closeProductModalButtonCard7.addEventListener('click', function() {
+            productDetailModalCard7.classList.add('hidden');
+});
+
+          // Attach event listener to the "More Detail" link for Card 7
+          document.getElementById('more-card7').addEventListener('click', function(event) {
+           event.preventDefault();
+
+           // Define product details for Card 7
+           const title = 'Picun';
+           const imageSrc = '/src/images/pic10.jpg';
+           const description = '120 Hours Headphones Wireless Bluetooth, Hands-Free Calls, 3EQ & Game Mode, Foldable Headphones Over Ear for Travel Home Office Cellphone PC';
+           const price = '64,000 Thousand Naira';
+
+           // Show the modal with the product details
+           showProductDetailModalCard7(title, imageSrc, description, price);
+});
+
+        </script>  
+          <!-- Card 8 -->
+          <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+    <img src="/src/images/pic11.jpg" alt="Card Image 8" class="w-full h-48 object-cover">
+    <div class="p-4">
+      <h3 class="text-xl font-bold">JBL</h3>
+      <p class="text-gray-600 mt-2">JBL Tune 720BT with JBL Pure Bass Sound, Bluetooth 5.3, Up to 76H Battery Life and Speed Charge, Lightweight, Comfortable and Foldable Design (Black)</p>
+      <p class="font-bold">PRICE <span class="font-light text-red-700">640,000 Thousand Naira</span></p>
+      <a href="#" id="more-card8" class="text-blue-500 hover:underline mt-4 inline-block">More Detail</a><br><br>
+      <a href="#" class="inline-block">
+        <button class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300" onclick="addToCart('JBL', 640000)">
+          Add to Cart
+        </button>
+      </a>
+    </div>
+           </div>
+  
+           <!-- Lightbox Modal for Product Details -->
+            <div id="productDetailModal-card8" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+    <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+      <h2 id="modalProductTitle-card8" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+      <img id="modalProductImage-card8" src="" alt="Product Image" class="w-full h-60 object-cover mb-4">
+      <p id="modalProductDescription-card8" class="text-gray-700 mb-4"></p>
+      <p class="font-bold">PRICE: <span id="modalProductPrice-card8" class="font-light text-red-700"></span></p>
+      <button id="closeProductModal-card8" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+        Close
+      </button>
+    </div>
+           </div>
+          <script>
+    // Get the modal and button elements for Card 8
+const productDetailModalCard8 = document.getElementById('productDetailModal-card8');
+const closeProductModalButtonCard8 = document.getElementById('closeProductModal-card8');
+
+// Function to show the modal with product details for Card 8
+function showProductDetailModalCard8(title, imageSrc, description, price) {
+  document.getElementById('modalProductTitle-card8').textContent = title;
+  document.getElementById('modalProductImage-card8').src = imageSrc;
+  document.getElementById('modalProductDescription-card8').textContent = description;
+  document.getElementById('modalProductPrice-card8').textContent = price;
+  productDetailModalCard8.classList.remove('hidden');
+}
+
+// Function to hide the modal for Card 8
+closeProductModalButtonCard8.addEventListener('click', function() {
+  productDetailModalCard8.classList.add('hidden');
+});
+
+// Attach event listener to the "More Detail" link for Card 8
+document.getElementById('more-card8').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Define product details for Card 8
+  const title = 'JBL';
+  const imageSrc = '/src/images/pic11.jpg';
+  const description = 'JBL Tune 720BT with JBL Pure Bass Sound, Bluetooth 5.3, Up to 76H Battery Life and Speed Charge, Lightweight, Comfortable and Foldable Design (Black)';
+  const price = '640,000 Thousand Naira';
+
+  // Show the modal with the product details
+  showProductDetailModalCard8(title, imageSrc, description, price);
+});
+
+          </script>  
+    
+               <!-- Arrows for Navigation (Visible on Large Screens) -->
+            <div class="hidden lg:flex items-center justify-between absolute top-1/2 w-full transform -translate-y-1/2">
+    <div class="arrow arrow-left" onclick="slideLeft()">&#9664;</div>
+    <div class="arrow arrow-right" onclick="slideRight()">&#9654;</div>
+          </div>
+              </div>
+    
+  
+
+
+             <script>
+        const slider = document.querySelector('.slider');
+        const cartContainer = document.getElementById('cartContainer');
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cartTotalContainer = document.getElementById('cartTotal');
+      
+        let cart = [];
+      
+        function slideLeft() {
+          slider.scrollBy({
+            left: -300,
+            behavior: 'smooth'
+          });
+        }
+      
+        function slideRight() {
+          slider.scrollBy({
+            left: 300,
+            behavior: 'smooth'
+          });
+        }
+        //this code is responsible for the cart on all product
+      
+        function toggleCart() {
+          cartContainer.classList.toggle('active');
+        }
+      
+        function addToCart(itemName, itemPrice) {
+          cart.push({ name: itemName, price: itemPrice });
+          updateCart();
+          toggleCart(); // Show cart when item is added
+        }
+      
+        function updateCart() {
+          cartItemsContainer.innerHTML = ''; // Clear previous cart items
+      
+          let total = 0;
+      
+          if (cart.length === 0) {
+            cartItemsContainer.textContent = 'No items in cart.';
+          } else {
+            cart.forEach(item => {
+              total += item.price;
+              const cartItem = document.createElement('div');
+              cartItem.className = 'cart-item';
+              cartItem.textContent = `${item.name} - ${item.price} Naira`;
+              cartItemsContainer.appendChild(cartItem);
+            });
+          }
+      
+          cartTotalContainer.textContent = `Total: ${total.toLocaleString()} Naira`;
+        }
+                </script>
+      
+               </div>
+
+                <div>
+      
+        <style>
+          .slider {
+            scroll-snap-type: x mandatory;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+          }
+          .slider::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+          }
+          .slide {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            width: 80%; /* Adjust card width here */
+            max-width: 300px;
+          }
+          .arrow {
+            cursor: pointer;
+            background-color: rgba(172, 120, 9, 0.5);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            
+          }
+          .arrow-left {
+            left: 1rem;
+          }
+          .arrow-right {
+            right: 1rem;
+          }
+        </style> 
+ 
+      <!-- phone section  -->
+      <body class="bg-gray-100">
+        <div class="relative max-w-screen-xl mx-auto py-8">
+          <h2 class="text-3xl font-bold text-center mb-8">Phones.</h2>
+                 <!-- Cart Container -->
+        <div class="cart-container " id="cartContainer">
+            <div class="cart-title ">Cart</div>
+            <div class="close-cart  bg-orange-500" onclick="toggleCart()" >X</div>
+            <div class="cart-items" id="cartItems">
+              No items in cart.
+
+            </div>
+            <div class="cart-total text-green-400" id="cartTotal">Total: 0 Naira</div>
+            <button type="submit"
+            class="w-full py-2 px-4 bg-orange-500 text-white hover:bg-slate-300 hover:text-black font-semibold rounded-md shadow duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Checkout
+        </button>
+
+                  <!--this is the light box Modal -->
+    <div id="thankYouModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm mx-auto text-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Thank you for contacting us!</h2>
+                <p class="text-gray-700 mb-6">We have received your message and will get back to you shortly.</p>
+                    <button id="closeModal" class="py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                    Okay
+                </button>
+            </div>
+        </div>
+          </div>
+      
+          <!-- Slider Container -->
+          <div id="phoneSlider" class="slider flex space-x-4 p-4">
+<!-- Card 9 -->
+<div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+  <img src="/src/shop/phones/1.webp" alt="Card Image 9" class="w-full h-80 object-cover">
+  <div class="p-4">
+    <h3 class="text-xl font-bold">BAOWU</h3>
+    <p class="text-gray-600 mt-2">
+      6+256GB, Android 13.0 Unlocked Cell Phones, 6.82" HD Screen Battery 6800mAH with 128GB Memory Card/Face ID/Fingerprint Lock/Dual SIM 5G Phone (Purple)
+    </p>
+    <p class="font-bold">PRICE <span class="font-light text-red-700">500,000 Thousand Naira</span></p>
+    <a href="#" id="more-card9" class="text-blue-500 hover:underline mt-4 inline-block">More Detail</a><br>
+    <a href="#" class="inline-block">
+      <button class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300" onclick="addToCart('BAOWU', 500000)">
+        Add to Cart
+      </button>
+    </a>
+  </div>
+</div>
+
+<!-- Modal Structure for Card 9 -->
+<div id="productDetailModal-card9" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+    <h2 id="modalProductTitle-card9" class="text-2xl font-bold text-gray-800 mb-4mb-4"></h2>
+    <img id="modalProductImage-card9" src="" alt="Product Image" class="w-full h-40 object-cover mb-4">
+    <p id="modalProductDescription-card9" class="text-gray-600 mb-4"></p>
+    <p id="modalProductPrice-card9" class="font-light text-red-700"></p>
+    <button id="closeProductModal-card9" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">Close</button>
+  </div>
+</div>
+
+<script>
+// Get the modal and button elements for Card 9
+const productDetailModalCard9 = document.getElementById('productDetailModal-card9');
+const closeProductModalButtonCard9 = document.getElementById('closeProductModal-card9');
+
+// Function to show the modal with product details for Card 9
+function showProductDetailModalCard9(title, imageSrc, description, price) {
+  document.getElementById('modalProductTitle-card9').textContent = title;
+  document.getElementById('modalProductImage-card9').src = imageSrc;
+  document.getElementById('modalProductDescription-card9').textContent = description;
+  document.getElementById('modalProductPrice-card9').textContent = price;
+  productDetailModalCard9.classList.remove('hidden');
+}
+
+// Function to hide the modal for Card 9
+closeProductModalButtonCard9.addEventListener('click', function() {
+  productDetailModalCard9.classList.add('hidden');
+});
+
+// Attach event listener to the "More Detail" link for Card 9
+document.getElementById('more-card9').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Define product details for Card 9
+  const title = 'BAOWU';
+  const imageSrc = '/src/shop/phones/1.webp';
+  const description = '6+256GB, Android 13.0 Unlocked Cell Phones, 6.82" HD Screen Battery 6800mAH with 128GB Memory Card/Face ID/Fingerprint Lock/Dual SIM 5G Phone (Purple)';
+  const price = '500,000 Thousand Naira';
+
+  // Show the modal with the product details
+  showProductDetailModalCard9(title, imageSrc, description, price);
+});
+
+</script>
+  <!-- Card 10 -->
+
+    <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+  <img src="/src/shop/phones/2.jpg" alt="Card Image 10" class="w-full h-80 object-cover">
+  <div class="p-4">
+    <h3 class="text-xl font-bold">SAMSUNG</h3>
+    <p class="text-gray-600 mt-2">
+      SAMSUNG Galaxy A15 5G A Series Cell Phone, 128GB Unlocked Android Smartphone, AMOLED Display, Expandable Storage, Knox Security, Super Fast Charging, US Version, 2024, Blue Black
+    </p>
+    <p class="font-bold">PRICE <span class="font-light text-red-700">180,000 Thousand Naira</span></p>
+    <a href="#" id="more-card10" class="text-blue-500 hover:underline mt-4 inline-block">More Detail</a><br>
+    <a href="#" class="inline-block">
+      <button class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300" onclick="addToCart('SAMSUNG', 180000)">
+        Add to Cart
+      </button>
+    </a>
+  </div>
+</div>
+
+<div id="productDetailModal-card10" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+    <h2 id="modalProductTitle-card10" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+    <img id="modalProductImage-card10" src="" alt="Product Image" class="w-full h-full object-cover mb-4">
+    <p id="modalProductDescription-card10" class="text-gray-600 mb-4"></p>
+    <p class="font-bold">PRICE: <span id="modalProductPrice-card10" class="font-light text-red-700"></span></p>
+    <button id="closeProductModal-card10" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+      Close
+    </button>
+  </div>
+</div>
+
+<script>
+  // Get the modal and button elements for Card 10
+const productDetailModalCard10 = document.getElementById('productDetailModal-card10');
+const closeProductModalButtonCard10 = document.getElementById('closeProductModal-card10');
+
+// Function to show the modal with product details for Card 10
+function showProductDetailModalCard10(title, imageSrc, description, price) {
+  document.getElementById('modalProductTitle-card10').textContent = title;
+  document.getElementById('modalProductImage-card10').src = imageSrc;
+  document.getElementById('modalProductDescription-card10').textContent = description;
+  document.getElementById('modalProductPrice-card10').textContent = price;
+  productDetailModalCard10.classList.remove('hidden');
+}
+
+// Function to hide the modal for Card 10
+closeProductModalButtonCard10.addEventListener('click', function() {
+  productDetailModalCard10.classList.add('hidden');
+});
+
+// Attach event listener to the "More Detail" link for Card 10
+document.getElementById('more-card10').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Define product details for Card 10
+  const title = 'SAMSUNG Galaxy A15';
+  const imageSrc = '/src/shop/phones/2.jpg';
+  const description = 'SAMSUNG Galaxy A15 5G A Series Cell Phone, 128GB Unlocked Android Smartphone, AMOLED Display, Expandable Storage, Knox Security, Super Fast Charging, US Version, 2024, Blue Black';
+  const price = '180,000 Thousand Naira';
+
+  // Show the modal with the product details
+  showProductDetailModalCard10(title, imageSrc, description, price);
+});
+
+</script>
+            <!-- Card 3 -->
+            <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="/src/shop/phones/3.jpg" alt="Card Image 3" class="w-full h-80 object-cover">
+              <div class="p-4">
+                <h3 class="text-xl font-bold"> Google </h3>
+                <p class="text-gray-600 mt-2"> Google Pixel 7a - Unlocked Android Cell Phone - Smartphone with Wide Angle Lens and 24-Hour Battery - 128 GB – Charcoal</p>
+                <p class="font-bold"> PRICE <span class="font-light text-red-700">500,000 Thousand Naira</span></p>
+                <a href="#" id="caed11" class="text-blue-500 hover:underline mt-4 inline-block"> More Detail</a><br>
+                <a href="#" class="inline-block ">
+                  <button
+                     class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300"
+                  onclick="addToCart('Google', 500000)"
+                >
+                  Add to Cart
+                  </button>
+                </a>
+              </div>
+            </div>
+            <div id="productDetailModal-card11" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+              <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+                <h2 id="modalProductTitle-card11" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+                <img id="modalProductImage-card11" src="" alt="Product Image" class="w-full h-full object-cover mb-4">
+                <p id="modalProductDescription-card11" class="text-gray-600 mb-4"></p>
+                <p class="font-bold">PRICE: <span id="modalProductPrice-card11" class="font-light text-red-700"></span></p>
+                <button id="closeProductModal-card11" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                  Close
+                </button>
+              </div>
+            </div>
+              <script>
+                // Get the modal and button elements for Card 11
+const productDetailModalCard11 = document.getElementById('productDetailModal-card11');
+const closeProductModalButtonCard11 = document.getElementById('closeProductModal-card11');
+
+// Function to show the modal with product details for Card 11
+function showProductDetailModalCard11(title, imageSrc, description, price) {
+  document.getElementById('modalProductTitle-card11').textContent = title;
+  document.getElementById('modalProductImage-card11').src = imageSrc;
+  document.getElementById('modalProductDescription-card11').textContent = description;
+  document.getElementById('modalProductPrice-card11').textContent = price;
+  productDetailModalCard11.classList.remove('hidden');
+}
+
+// Function to hide the modal for Card 11
+closeProductModalButtonCard11.addEventListener('click', function() {
+  productDetailModalCard11.classList.add('hidden');
+});
+
+// Attach event listener to the "More Detail" link for Card 11
+document.getElementById('caed11').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Define product details for Card 11
+  const title = 'Google Pixel 7a';
+  const imageSrc = '/src/shop/phones/3.jpg';
+  const description = 'Google Pixel 7a - Unlocked Android Cell Phone - Smartphone with Wide Angle Lens and 24-Hour Battery - 128 GB – Charcoal';
+  const price = '500,000 Thousand Naira';
+
+  // Show the modal with the product details
+  showProductDetailModalCard11(title, imageSrc, description, price);
+});
+
+              </script>            
+            <!-- Card 5 -->
+            <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="/src/shop/phones/5.jpg" alt="Card Image 5" class="w-full h-80 object-cover">
+              <div class="p-4">
+                <h3 class="text-xl font-bold">iPhone 14 Pro</h3>
+                <p class="text-gray-600 mt-2"> ESR for iPhone 14 Pro Case, Compatible with MagSafe, Shockproof Military-Grade Protection, Yellowing Resistant, Magnetic Phone Case for iPhone 14 Pro, Classic Hybrid Case (HaloLock), Clear</p>
+                <p class="font-bold"> PRICE <span class="font-light text-red-700">1,000,000 Million Naira</span></p>
+                <a href="#" id="card12" class="text-blue-500 hover:underline mt-4 inline-block"> More Detail</a><br>
+                <a href="#" class="inline-block ">
+                  <button
+                     class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300"
+                  onclick="addToCart('iPhone 14 Pro', 1000000)"
+                >
+                  Add to Cart
+                  </button>
+                </a>
+              </div>
+            </div>
+
+            <div id="productDetailModal-card12" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+              <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+                <h2 id="modalProductTitle-card12" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+                <img id="modalProductImage-card12" src="" alt="Product Image" class="w-full h-80 object-cover mb-4">
+                <p id="modalProductDescription-card12" class="text-gray-600 mb-4"></p>
+                <p class="font-bold">PRICE: <span id="modalProductPrice-card12" class="font-light text-red-700"></span></p>
+                <button id="closeProductModal-card12" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                  Close
+                </button>
+              </div>
+            </div>
+              <script>
+                // Get the modal and button elements for Card 12
+const productDetailModalCard12 = document.getElementById('productDetailModal-card12');
+const closeProductModalButtonCard12 = document.getElementById('closeProductModal-card12');
+
+// Function to show the modal with product details for Card 12
+function showProductDetailModalCard12(title, imageSrc, description, price) {
+  document.getElementById('modalProductTitle-card12').textContent = title;
+  document.getElementById('modalProductImage-card12').src = imageSrc;
+  document.getElementById('modalProductDescription-card12').textContent = description;
+  document.getElementById('modalProductPrice-card12').textContent = price;
+  productDetailModalCard12.classList.remove('hidden');
+}
+
+// Function to hide the modal for Card 12
+closeProductModalButtonCard12.addEventListener('click', function() {
+  productDetailModalCard12.classList.add('hidden');
+});
+
+// Attach event listener to the "More Detail" link for Card 12
+document.getElementById('card12').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Define product details for Card 12
+  const title = 'iPhone 14 Pro';
+  const imageSrc = '/src/shop/phones/5.jpg';
+  const description = 'ESR for iPhone 14 Pro Case, Compatible with MagSafe, Shockproof Military-Grade Protection, Yellowing Resistant, Magnetic Phone Case for iPhone 14 Pro, Classic Hybrid Case (HaloLock), Clear';
+  const price = '1,000,000 Million Naira';
+
+  // Show the modal with the product details
+  showProductDetailModalCard12(title, imageSrc, description, price);
+});
+
+              </script>            
+            <!-- Card 6 -->
+            <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="/src/shop/phones/6.jpg" alt="Card Image 6" class="w-full h-80 object-cover">
+              <div class="p-4">
+                <h3 class="text-xl font-bold">OnePlus 12R</h3>
+                <p class="text-gray-600 mt-2">16GB RAM+256GB, Dual-SIM, US Factory Unlocked Android Smartphone, 5500 mAh Battery, 50MP Camera, 80W Fast Charging, 2024, Iron Gray</p>
+                <p class="font-bold"> PRICE <span class="font-light text-red-700">700,000 Thousand Naira</span></p>
+                <a href="#" id="card13" class="text-blue-500 hover:underline mt-4 inline-block"> More Detail</a><br>
+                <a href="#" class="inline-block ">
+                  <button
+                     class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300"
+                  onclick="addToCart('OnePlus', 700000)"
+                >
+                  Add to Cart
+                  </button>
+                </a>
+              </div>
+            </div>
+
+            <div id="productDetailModal-card13" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+              <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+                <h2 id="modalProductTitle-card13" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+                <img id="modalProductImage-card13" src="" alt="Product Image" class="w-full h-80 object-cover mb-4">
+                <p id="modalProductDescription-card13" class="text-gray-600 mb-4"></p>
+                <p class="font-bold">PRICE: <span id="modalProductPrice-card13" class="font-light text-red-700"></span></p>
+                <button id="closeProductModal-card13" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                  Close
+                </button>
+              </div>
+            </div>
+              <script>
+                // Get the modal and button elements for Card 13
+const productDetailModalCard13 = document.getElementById('productDetailModal-card13');
+const closeProductModalButtonCard13 = document.getElementById('closeProductModal-card13');
+
+// Function to show the modal with product details for Card 13
+function showProductDetailModalCard13(title, imageSrc, description, price) {
+  document.getElementById('modalProductTitle-card13').textContent = title;
+  document.getElementById('modalProductImage-card13').src = imageSrc;
+  document.getElementById('modalProductDescription-card13').textContent = description;
+  document.getElementById('modalProductPrice-card13').textContent = price;
+  productDetailModalCard13.classList.remove('hidden');
+}
+
+// Function to hide the modal for Card 13
+closeProductModalButtonCard13.addEventListener('click', function() {
+  productDetailModalCard13.classList.add('hidden');
+});
+
+// Attach event listener to the "More Detail" link for Card 13
+document.getElementById('card13').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Define product details for Card 13
+  const title = 'OnePlus 12R';
+  const imageSrc = '/src/shop/phones/6.jpg';
+  const description = '16GB RAM+256GB, Dual-SIM, US Factory Unlocked Android Smartphone, 5500 mAh Battery, 50MP Camera, 80W Fast Charging, 2024, Iron Gray';
+  const price = '700,000 Thousand Naira';
+
+  // Show the modal with the product details
+  showProductDetailModalCard13(title, imageSrc, description, price);
+});
+
+              </script>            
+            <!-- Card 7 -->
+            <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="/src/shop/phones/7.jpg" alt="Card Image 7" class="w-full h-80 object-cover">
+              <div class="p-4">
+                <h3 class="text-xl font-bold">LAORENKI</h3>
+                <p class="text-gray-600 mt-2"> S24 Plus 4G Unlocked Smartphone,4GB+64GB Fully Unlocked Cell Phone,Android 13, 6.72" Unlocked Android Telefones, 6000mAh, Dual Camera/Dual SIM 4G US Version,Black</p>
+                <p class="font-bold"> PRICE <span class="font-light text-red-700">700,000 Thousand Naira</span></p>
+                <a href="#" id="card14" class="text-blue-500 hover:underline mt-4 inline-block"> More Detail</a><br>
+                <a href="#" class="inline-block ">
+                  <button
+                     class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300"
+                  onclick="addToCart('LAORENKI', 700000)"
+                >
+                  Add to Cart
+                  </button>
+                </a>
+              </div>
+            </div>
+
+
+            <div id="productDetailModal-card14" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+              <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+                <h2 id="modalProductTitle-card14" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+                <img id="modalProductImage-card14" src="" alt="Product Image" class="w-full h-80 object-cover mb-4">
+                <p id="modalProductDescription-card14" class="text-gray-600 mb-4"></p>
+                <p class="font-bold">PRICE: <span id="modalProductPrice-card14" class="font-light text-red-700"></span></p>
+                <button id="closeProductModal-card14" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                  Close
+                </button>
+              </div>
+            </div>
+                  
+            
+            <script>
+              // Get the modal and button elements for Card 14
+const productDetailModalCard14 = document.getElementById('productDetailModal-card14');
+const closeProductModalButtonCard14 = document.getElementById('closeProductModal-card14');
+
+// Function to show the modal with product details for Card 14
+function showProductDetailModalCard14(title, imageSrc, description, price) {
+  document.getElementById('modalProductTitle-card14').textContent = title;
+  document.getElementById('modalProductImage-card14').src = imageSrc;
+  document.getElementById('modalProductDescription-card14').textContent = description;
+  document.getElementById('modalProductPrice-card14').textContent = price;
+  productDetailModalCard14.classList.remove('hidden');
+}
+
+// Function to hide the modal for Card 14
+closeProductModalButtonCard14.addEventListener('click', function() {
+  productDetailModalCard14.classList.add('hidden');
+});
+
+// Attach event listener to the "More Detail" link for Card 14
+document.getElementById('card14').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Define product details for Card 14
+  const title = 'LAORENKI';
+  const imageSrc = '/src/shop/phones/7.jpg';
+  const description = 'S24 Plus 4G Unlocked Smartphone, 4GB+64GB Fully Unlocked Cell Phone, Android 13, 6.72" Unlocked Android Telefones, 6000mAh, Dual Camera/Dual SIM 4G US Version, Black';
+  const price = '700,000 Thousand Naira';
+
+  // Show the modal with the product details
+  showProductDetailModalCard14(title, imageSrc, description, price);
+});
+
+            </script>
+            <!-- Card 8 -->
+            <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="/src/shop/phones/8.jpg" alt="Card Image 8" class="w-full h-80 object-cover">
+              <div class="p-4">
+                <h3 class="text-xl font-bold">	NUU</h3>
+                <p class="text-gray-600 mt-2">NUU B30Pro 5G AMOLED 6.7” 120Hz | 12GB RAM | Phone for T-Mobile, Mint, Metro, 32MP Selfie +108MP Cam, Dual SIM. MTK Dimensity 7050, 256GB ROM, Green, 1 Year Warranty, for Qlink, Ultra Mobile</p>
+                <p class="font-bold"> PRICE <span class="font-light text-red-700">500,000 Thousand Naira</span></p>
+                <a href="#" id="card15" class="text-blue-500 hover:underline mt-4 inline-block"> More Detail</a><br>
+                <a href="#" class="inline-block ">
+                  <button
+                     class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300"
+                  onclick="addToCart('NUU', 500000)"
+                >
+                  Add to Cart
+                  </button>
+                </a>
+              </div>
+            </div>
+
+
+            <div id="productDetailModal-card15" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+              <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+                <h2 id="modalProductTitle-card15" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+                <img id="modalProductImage-card15" src="" alt="Product Image" class="w-full h-80 object-cover mb-4">
+                <p id="modalProductDescription-card15" class="text-gray-600 mb-4"></p>
+                <p class="font-bold">PRICE: <span id="modalProductPrice-card15" class="font-light text-red-700"></span></p>
+                <button id="closeProductModal-card15" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                  Close
+                </button>
+              </div>
+            </div>
+                
+            
+            <script>
+              // Get the modal and button elements for Card 15
+const productDetailModalCard15 = document.getElementById('productDetailModal-card15');
+const closeProductModalButtonCard15 = document.getElementById('closeProductModal-card15');
+
+// Function to show the modal with product details for Card 15
+function showProductDetailModalCard15(title, imageSrc, description, price) {
+  document.getElementById('modalProductTitle-card15').textContent = title;
+  document.getElementById('modalProductImage-card15').src = imageSrc;
+  document.getElementById('modalProductDescription-card15').textContent = description;
+  document.getElementById('modalProductPrice-card15').textContent = price;
+  productDetailModalCard15.classList.remove('hidden');
+}
+
+// Function to hide the modal for Card 15
+closeProductModalButtonCard15.addEventListener('click', function() {
+  productDetailModalCard15.classList.add('hidden');
+});
+
+// Attach event listener to the "More Detail" link for Card 15
+document.getElementById('card15').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Define product details for Card 15
+  const title = 'NUU';
+  const imageSrc = '/src/shop/phones/8.jpg';
+  const description = 'NUU B30Pro 5G AMOLED 6.7” 120Hz | 12GB RAM | Phone for T-Mobile, Mint, Metro, 32MP Selfie +108MP Cam, Dual SIM. MTK Dimensity 7050, 256GB ROM, Green, 1 Year Warranty, for Qlink, Ultra Mobile';
+  const price = '500,000 Thousand Naira';
+
+  // Show the modal with the product details
+  showProductDetailModalCard15(title, imageSrc, description, price);
+});
+
+            </script>
+          </div>
+   <!-- Arrows for Navigation (Visible on Large Screens) -->
+   <div class="hidden lg:flex items-center justify-between absolute top-1/2 w-full transform -translate-y-1/2">
+    <div class="arrow arrow-left" onclick="slidePhoneLeft()">&#9664;</div>
+    <div class="arrow arrow-right" onclick="slidePhoneRight()">&#9654;</div>
+</div>
+</div>
+                </div>
+               <script>
+        const phoneSlider = document.getElementById('phoneSlider');
+      
+
+        function slidePhoneLeft() {
+            phoneSlider.scrollBy({ left: -300, behavior: 'smooth' });
+        }
+
+        function slidePhoneRight() {
+            phoneSlider.scrollBy({ left: 300, behavior: 'smooth' });
+        }
+
+     
+        
+              </script>
+
+
+               <div>     
+
+      
+      <body class="bg-gray-100">
+        <div class="relative max-w-screen-xl mx-auto py-8">
+          <h2 class="text-3xl font-bold text-center mb-8">Game Setup.</h2>
+                <!-- Cart Container -->
+        <div class="cart-container " id="cartContainer">
+            <div class="cart-title ">Cart</div>
+            <div class="close-cart  bg-orange-500" onclick="toggleCart()" >X</div>
+            <div class="cart-items" id="cartItems">
+              No items in cart.
+            </div>
+            <div class="cart-total text-green-400" id="cartTotal">Total: 0 Naira</div>
+      
+          </div>
+      
+          <!-- Slider Container -->
+          <div id="GameSlider" class="slider flex space-x-4 p-4">
+            <!-- Card 1 -->
+            <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="/src/shop/game-setup/1.jpg" alt="Card Image 1" class="w-full  h-60 object-cover">
+              <div class="p-4">
+                <h3 class="text-xl font-bold"> 	KANTUTOE</h3>
+                <p class="text-gray-600 mt-2"> TV Backlights, 13.1FT LED Lights for 32-65 Inch TV, RGB TV LED Lights Behind, Music Sync Bluetooth APP and Remote Control TV LED Strip Lights USB Powered for Gaming/Bedroom</p>
+                  <p class="font-bold"> PRICE <span class="font-light text-red-700">500,000 Thousand Naira</span></p>
+                <a href="#" id="card16" class="text-blue-500 hover:underline mt-4 inline-block">More Detail</a><br>
+                <a href="#" class="inline-block ">
+                    <button
+                       class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300"
+                    onclick="addToCart('KANTUTOE', 500000)"
+                  >
+                    Add to Cart
+                    </button>
+                  </a>
+
+              </div>
+            </div>
+
+            <div id="productDetailModal-card16" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+              <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+                <h2 id="modalProductTitle-card16" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+                <img id="modalProductImage-card16" src="" alt="Product Image" class="w-full h-full object-cover mb-4">
+                <p id="modalProductDescription-card16" class="text-gray-600 mb-4"></p>
+                <p class="font-bold">PRICE: <span id="modalProductPrice-card16" class="font-light text-red-700"></span></p>
+                <button id="closeProductModal-card16" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                  Close
+                </button>
+              </div>
+            </div>
+            
+
+            <script>
+              // Get the modal and button elements for Card 16
+const productDetailModalCard16 = document.getElementById('productDetailModal-card16');
+const closeProductModalButtonCard16 = document.getElementById('closeProductModal-card16');
+
+// Function to show the modal with product details for Card 16
+function showProductDetailModalCard16(title, imageSrc, description, price) {
+  document.getElementById('modalProductTitle-card16').textContent = title;
+  document.getElementById('modalProductImage-card16').src = imageSrc;
+  document.getElementById('modalProductDescription-card16').textContent = description;
+  document.getElementById('modalProductPrice-card16').textContent = price;
+  productDetailModalCard16.classList.remove('hidden');
+}
+
+// Function to hide the modal for Card 16
+closeProductModalButtonCard16.addEventListener('click', function() {
+  productDetailModalCard16.classList.add('hidden');
+});
+
+// Attach event listener to the "More Detail" link for Card 16
+document.getElementById('card16').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Define product details for Card 16
+  const title = 'KANTUTOE';
+  const imageSrc = '/src/shop/game-setup/1.jpg';
+  const description = 'TV Backlights, 13.1FT LED Lights for 32-65 Inch TV, RGB TV LED Lights Behind, Music Sync Bluetooth APP and Remote Control TV LED Strip Lights USB Powered for Gaming/Bedroom';
+  const price = '500,000 Thousand Naira';
+
+  // Show the modal with the product details
+  showProductDetailModalCard16(title, imageSrc, description, price);
+});
+
+            </script>
+            <!-- Card 2 -->
+            <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="/src/shop/game-setup/2.jpg" alt="Card Image 2" class="w-full  h-60 object-cover">
+              <div class="p-4">
+                <h3 class="text-xl font-bold"> 	ODK</h3>
+                <p class="text-gray-600 mt-2">ODK 40 Inch Small L Shaped Computer Desk with Reversible Storage Shelves, L-Shaped Corner Desk with Monitor Stand for Small Space, Modern Simple Writing Table for Home Office Workstation, White</p>
+                <p class="font-bold"> PRICE <span class="font-light text-red-700">120,000 Thousand Naira</span></p>
+                <a href="#" id="17" class="text-blue-500 hover:underline mt-4 inline-block"> More Detail</a><br>
+                <a href="#" class="inline-block ">
+                  <button
+                     class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300"
+                  onclick="addToCart('ODK', 120000)"
+                >
+                  Add to Cart
+                  </button>
+                </a>
+              </div>
+            </div>
+
+
+            <div id="productDetailModal-card17" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+              <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+                <h2 id="modalProductTitle-card17" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+                <img id="modalProductImage-card17" src="" alt="Product Image" class="w-full h-full object-cover mb-4">
+                <p id="modalProductDescription-card17" class="text-gray-600 mb-4"></p>
+                <p class="font-bold">PRICE: <span id="modalProductPrice-card17" class="font-light text-red-700"></span></p>
+                <button id="closeProductModal-card17" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                  Close
+                </button>
+              </div>
+            </div>
+
+                <script>
+                  // Get the modal and button elements for Card 17
+const productDetailModalCard17 = document.getElementById('productDetailModal-card17');
+const closeProductModalButtonCard17 = document.getElementById('closeProductModal-card17');
+
+// Function to show the modal with product details for Card 17
+function showProductDetailModalCard17(title, imageSrc, description, price) {
+  document.getElementById('modalProductTitle-card17').textContent = title;
+  document.getElementById('modalProductImage-card17').src = imageSrc;
+  document.getElementById('modalProductDescription-card17').textContent = description;
+  document.getElementById('modalProductPrice-card17').textContent = price;
+  productDetailModalCard17.classList.remove('hidden');
+}
+
+// Function to hide the modal for Card 17
+closeProductModalButtonCard17.addEventListener('click', function() {
+  productDetailModalCard17.classList.add('hidden');
+});
+
+// Attach event listener to the "More Detail" link for Card 17
+document.getElementById('17').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Define product details for Card 17
+  const title = 'ODK';
+  const imageSrc = '/src/shop/game-setup/2.jpg';
+  const description = 'ODK 40 Inch Small L Shaped Computer Desk with Reversible Storage Shelves, L-Shaped Corner Desk with Monitor Stand for Small Space, Modern Simple Writing Table for Home Office Workstation, White';
+  const price = '120,000 Thousand Naira';
+
+  // Show the modal with the product details
+  showProductDetailModalCard17(title, imageSrc, description, price);
+});
+
+                </script>
+            <!-- Card 3 -->
+            <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="/src/shop/game-setup/3.jpg" alt="Card Image 3" class="w-full  h-60 object-cover">
+              <div class="p-4">
+                <h3 class="text-xl font-bold"> KDD </h3>
+                <p class="text-gray-600 mt-2"> KDD Gaming RGB Headphones Stand, Rotatable Headset Stand with 9 Light Modes - Controller Holder with 2 USB Charging Ports and 3.5mm - Earphone Hanger Accessories for Desktop Gamer(Black)</p>
+                <p class="font-bold"> PRICE <span class="font-light text-red-700">50,000 Thousand Naira</span></p>
+                <a href="#" id="card18" class="text-blue-500 hover:underline mt-4 inline-block"> More Detail</a><br>
+                <a href="#" class="inline-block ">
+                    <button
+                       class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300"
+                    onclick="addToCart('KDD', 50000)"
+                  >
+                    Add to Cart
+                    </button>
+                  </a>
+              </div>
+            </div>
+
+            <div id="productDetailModal-card18" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+              <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+                <h2 id="modalProductTitle-card18" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+                <img id="modalProductImage-card18" src="" alt="Product Image" class="w-full h-full object-cover mb-4">
+                <p id="modalProductDescription-card18" class="text-gray-600 mb-4"></p>
+                <p class="font-bold">PRICE: <span id="modalProductPrice-card18" class="font-light text-red-700"></span></p>
+                <button id="closeProductModal-card18" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                  Close
+                </button>
+              </div>
+            </div>
+              
+            
+            <script>
+              // Get the modal and button elements for Card 18
+const productDetailModalCard18 = document.getElementById('productDetailModal-card18');
+const closeProductModalButtonCard18 = document.getElementById('closeProductModal-card18');
+
+// Function to show the modal with product details for Card 18
+function showProductDetailModalCard18(title, imageSrc, description, price) {
+  document.getElementById('modalProductTitle-card18').textContent = title;
+  document.getElementById('modalProductImage-card18').src = imageSrc;
+  document.getElementById('modalProductDescription-card18').textContent = description;
+  document.getElementById('modalProductPrice-card18').textContent = price;
+  productDetailModalCard18.classList.remove('hidden');
+}
+
+// Function to hide the modal for Card 18
+closeProductModalButtonCard18.addEventListener('click', function() {
+  productDetailModalCard18.classList.add('hidden');
+});
+
+// Attach event listener to the "More Detail" link for Card 18
+document.getElementById('card18').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Define product details for Card 18
+  const title = 'KDD';
+  const imageSrc = '/src/shop/game-setup/3.jpg';
+  const description = 'KDD Gaming RGB Headphones Stand, Rotatable Headset Stand with 9 Light Modes - Controller Holder with 2 USB Charging Ports and 3.5mm - Earphone Hanger Accessories for Desktop Gamer(Black)';
+  const price = '50,000 Thousand Naira';
+
+  // Show the modal with the product details
+  showProductDetailModalCard18(title, imageSrc, description, price);
+});
+
+            </script>
+            <!-- Card 4 -->
+            <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="/src/shop/game-setup/4.jpg" alt="Card Image 4" class="w-full  h-60 object-cover">
+              <div class="p-4">
+                <h3 class="text-xl font-bold"> 	Samsung</h3>
+                <p class="text-gray-600 mt-2">Gaming Keyboard and Mouse and Mouse pad and Gaming Headset, Wired LED RGB Backlight Bundle for PC Gamers and Xbox and PS4 Users - 4 in 1 Edition Hornet RX-250</p>
+                <p class="font-bold"> PRICE <span class="font-light text-red-700">200,000 Thousand Naira</span></p>
+                <a href="#" id="card19" class="text-blue-500 hover:underline mt-4 inline-block"> More Detail</a><br>
+                <a href="#" class="inline-block ">
+                    <button
+                    class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300"
+                 onclick="addToCart('Samsung', 200000)"
+               >
+                 Add to Cart
+                 </button>
+               
+                </a>
+              </div>
+            </div>
+
+
+            <div id="productDetailModal-card19" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+              <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+                <h2 id="modalProductTitle-card19" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+                <img id="modalProductImage-card19" src="" alt="Product Image" class="w-full h-full object-cover mb-4">
+                <p id="modalProductDescription-card19" class="text-gray-600 mb-4"></p>
+                <p class="font-bold">PRICE: <span id="modalProductPrice-card19" class="font-light text-red-700"></span></p>
+                <button id="closeProductModal-card19" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                  Close
+                </button>
+              </div>
+            </div>
+            
+
+            <script>
+              // Get the modal and button elements for Card 19
+const productDetailModalCard19 = document.getElementById('productDetailModal-card19');
+const closeProductModalButtonCard19 = document.getElementById('closeProductModal-card19');
+
+// Function to show the modal with product details for Card 19
+function showProductDetailModalCard19(title, imageSrc, description, price) {
+  document.getElementById('modalProductTitle-card19').textContent = title;
+  document.getElementById('modalProductImage-card19').src = imageSrc;
+  document.getElementById('modalProductDescription-card19').textContent = description;
+  document.getElementById('modalProductPrice-card19').textContent = price;
+  productDetailModalCard19.classList.remove('hidden');
+}
+
+// Function to hide the modal for Card 19
+closeProductModalButtonCard19.addEventListener('click', function() {
+  productDetailModalCard19.classList.add('hidden');
+});
+
+// Attach event listener to the "More Detail" link for Card 19
+document.getElementById('card19').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Define product details for Card 19
+  const title = 'Samsung';
+  const imageSrc = '/src/shop/game-setup/4.jpg';
+  const description = 'Gaming Keyboard and Mouse and Mouse pad and Gaming Headset, Wired LED RGB Backlight Bundle for PC Gamers and Xbox and PS4 Users - 4 in 1 Edition Hornet RX-250';
+  const price = '200,000 Thousand Naira';
+
+  // Show the modal with the product details
+  showProductDetailModalCard19(title, imageSrc, description, price);
+});
+
+            </script>
+            <!-- Card 5 -->
+            <div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+              <img src="/src/shop/game-setup/5.jpg" alt="Card Image 5" class="w-full h-60 object-cover">
+              <div class="p-4">
+                <h3 class="text-xl font-bold">NOOTRY</h3>
+                <p class="text-gray-600 mt-2"> Computer Speakers, Gaming Desktop Speakers with 7Color Backlit, 10W USB Powered Volume Control Speakers, 2.0CH Stereo Laptop Speaker, Bluetooth&USB Audio for PC, Monitor, Mac, Tablet, Phone</p>
+                <p class="font-bold"> PRICE <span class="font-light text-red-700">1,000,000 Million Naira</span></p>
+                <a href="#" id="card20" class="text-blue-500 hover:underline mt-4 inline-block"> More Detail</a><br>
+                <a href="#" class="inline-block ">
+                    <button
+                       class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300"
+                    onclick="addToCart('NOOTRY', 1000000)"
+                  >
+                    Add to Cart
+                    </button>
+                  
+              </div>
+            </div>
+
+            <!-- Modal for Card 5 -->
+              <div id="productDetailModal-card20" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+                 <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+                    <h2 id="modalProductTitle-card20" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+                           <img id="modalProductImage-card20" src="" alt="Product Image" class="w-full h-full object-cover mb-4">
+                                <p id="modalProductDescription-card20" class="text-gray-600 mb-4"></p>
+                                   <p class="font-bold">PRICE: <span id="modalProductPrice-card20" class="font-light text-red-700"></span></p>
+                                       <button id="closeProductModal-card20" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                                          Close
+                                           </button>
+                  </div>
+               </div>
+                                                        
+
+  <script>
+  // JavaScript for Card 5 Modal (NOOTRY)
+
+// Function to open the modal
+document.getElementById('card20').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    
+    // Set the content of the modal
+    document.getElementById('modalProductTitle-card20').textContent = 'NOOTRY';
+    document.getElementById('modalProductImage-card20').src = '/src/shop/game-setup/5.jpg';
+    document.getElementById('modalProductDescription-card20').textContent = 'Computer Speakers, Gaming Desktop Speakers with 7Color Backlit, 10W USB Powered Volume Control Speakers, 2.0CH Stereo Laptop Speaker, Bluetooth&USB Audio for PC, Monitor, Mac, Tablet, Phone';
+    document.getElementById('modalProductPrice-card20').textContent = '1,000,000 Million Naira';
+    
+    // Show the modal
+    document.getElementById('productDetailModal-card20').classList.remove('hidden');
+});
+
+// Function to close the modal
+document.getElementById('closeProductModal-card20').addEventListener('click', function() {
+    document.getElementById('productDetailModal-card20').classList.add('hidden');
+});
+
+ </script>
+        <!-- Card 6 -->
+<div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+  <img src="/src/shop/game-setup/6.jpg" alt="Card Image 6" class="w-full h-60 object-cover">
+  <div class="p-4">
+      <h3 class="text-xl font-bold">BTO</h3>
+      <p class="text-gray-600 mt-2">HP RGB Gaming Desktop PC Bundle - Intel Core i7 6th Gen, 16GB DDR4 Ram, 512GB SSD, Radeon RX - 550 4GB GDDR5, New 24 Inch Monitor - Prebuilt Gaming Computer, RGB Set - Windows 10 Pro (Renewed)</p>
+      <p class="font-bold">PRICE <span class="font-light text-red-700">200,000 Thousand Naira</span></p>
+      <a href="#" id="card22" class="text-blue-500 hover:underline mt-4 inline-block">More Detail</a><br>
+      <a href="#" class="inline-block">
+          <button
+              class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300"
+              onclick="addToCart('BTO', 200000)">
+              Add to Cart
+          </button>
+      </a>
+  </div>
+</div>
+
+<!-- Modal for Card 6 -->
+<div id="productDetailModal-card22" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+      <h2 id="modalProductTitle-card22" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+      <img id="modalProductImage-card22" src="" alt="Product Image" class="w-full h-full object-cover mb-4">
+      <p id="modalProductDescription-card22" class="text-gray-600 mb-4"></p>
+      <p class="font-bold">PRICE: <span id="modalProductPrice-card22" class="font-light text-red-700"></span></p>
+      <button id="closeProductModal-card22" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+          Close
+      </button>
+  </div>
+</div>
+
+<!-- JavaScript for Card 6 Modal (BTO) -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to open the modal
+  document.getElementById('card22').addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent the default link behavior
+      
+      // Set the content of the modal
+      document.getElementById('modalProductTitle-card22').textContent = 'BTO';
+      document.getElementById('modalProductImage-card22').src = '/src/shop/game-setup/6.jpg';
+      document.getElementById('modalProductDescription-card22').textContent = 'HP RGB Gaming Desktop PC Bundle - Intel Core i7 6th Gen, 16GB DDR4 Ram, 512GB SSD, Radeon RX - 550 4GB GDDR5, New 24 Inch Monitor - Prebuilt Gaming Computer, RGB Set - Windows 10 Pro (Renewed)';
+      document.getElementById('modalProductPrice-card22').textContent = '200,000 Thousand Naira';
+      
+      // Show the modal
+      document.getElementById('productDetailModal-card22').classList.remove('hidden');
+  });
+
+  // Function to close the modal
+  document.getElementById('closeProductModal-card22').addEventListener('click', function() {
+      document.getElementById('productDetailModal-card22').classList.add('hidden');
+  });
+});
+</script>
+
+<!-- Card 7 -->
+<div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+  <img src="/src/shop/game-setup/71dgLT0ek1L._AC_SX679_.jpg" alt="Card Image 7" class="w-full h-60 object-cover">
+  <div class="p-4">
+      <h3 class="text-xl font-bold">Shelf</h3>
+      <p class="text-gray-600 mt-2">suptek Glass Floating Shelves, TV Wall Mount with Shelf for DVD Player / PS4 / Cable Boxes/Game Consoles/Sky Box/TV Accessories, Media Shelf, Flat Black Wall Mount Bracket, AV Shelf, 2 Tiers Shelves</p>
+      <p class="font-bold">PRICE <span class="font-light text-red-700">700,000 Thousand Naira</span></p>
+      <a href="#" id="card21" class="text-blue-500 hover:underline mt-4 inline-block">More Detail</a><br>
+      <a href="#" class="inline-block">
+          <button
+              class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300"
+              onclick="addToCart('Shelf', 700000)">
+              Add to Cart
+          </button>
+      </a>
+  </div>
+</div>
+
+<!-- Modal for Card 7 -->
+<div id="productDetailModal-card21" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+      <h2 id="modalProductTitle-card21" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+      <img id="modalProductImage-card21" src="" alt="Product Image" class="w-full h-full object-cover mb-4">
+      <p id="modalProductDescription-card21" class="text-gray-600 mb-4"></p>
+      <p class="font-bold">PRICE: <span id="modalProductPrice-card21" class="font-light text-red-700"></span></p>
+      <button id="closeProductModal-card21" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+          Close
+      </button>
+  </div>
+</div>
+
+<!-- JavaScript for Card 7 Modal (Shelf) -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to open the modal
+  document.getElementById('card21').addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent the default link behavior
+      
+      // Set the content of the modal
+      document.getElementById('modalProductTitle-card21').textContent = 'Shelf';
+      document.getElementById('modalProductImage-card21').src = '/src/shop/game-setup/71dgLT0ek1L._AC_SX679_.jpg';
+      document.getElementById('modalProductDescription-card21').textContent = 'Suptek Glass Floating Shelves, TV Wall Mount with Shelf for DVD Player / PS4 / Cable Boxes/Game Consoles/Sky Box/TV Accessories, Media Shelf, Flat Black Wall Mount Bracket, AV Shelf, 2 Tiers Shelves';
+      document.getElementById('modalProductPrice-card21').textContent = '700,000 Thousand Naira';
+      
+      // Show the modal
+      document.getElementById('productDetailModal-card21').classList.remove('hidden');
+  });
+
+  // Function to close the modal
+  document.getElementById('closeProductModal-card21').addEventListener('click', function() {
+      document.getElementById('productDetailModal-card21').classList.add('hidden');
+  });
+});
+</script>
+<!-- Card 8 -->
+<div class="slide bg-white rounded-lg shadow-md overflow-hidden">
+  <img src="/src/shop/game-setup/7.webp" alt="Card Image 8" class="w-full h-60 object-cover">
+  <div class="p-4">
+      <h3 class="text-xl font-bold">Nikleb</h3>
+      <p class="text-gray-600 mt-2">Power Strip 23 in 1, 20 Outlets Surge Protector Wall Mount with 2 USB Ports + 1 USB C Port 3.1A Total, Multi Plug Extension Cord 6ft Heavy Duty, Office Desk Accessories for Gaming, Studio</p>
+      <p class="font-bold">PRICE <span class="font-light text-red-700">500,000 Thousand Naira</span></p>
+      <a href="#" id="card23" class="text-blue-500 hover:underline mt-4 inline-block">More Detail</a><br>
+      <a href="#" class="inline-block">
+          <button
+              class="bg-orange-500 text-white hover:bg-slate-300 hover:text-black py-2 px-4 rounded transition duration-300"
+              onclick="addToCart('Nikleb', 500000)">
+              Add to Cart
+          </button>
+      </a>
+  </div>
+</div>
+
+<!-- Modal for Card 8 -->
+<div id="productDetailModal-card23" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto text-center">
+      <h2 id="modalProductTitle-card23" class="text-2xl font-bold text-gray-800 mb-4"></h2>
+      <img id="modalProductImage-card23" src="" alt="Product Image" class="w-full h-full object-cover mb-4">
+      <p id="modalProductDescription-card23" class="text-gray-600 mb-4"></p>
+      <p class="font-bold">PRICE: <span id="modalProductPrice-card23" class="font-light text-red-700"></span></p>
+      <button id="closeProductModal-card23" class="mt-6 py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+          Close
+      </button>
+  </div>
+</div>
+
+<!-- JavaScript for Card 8 Modal (Nikleb) -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to open the modal
+  document.getElementById('card23').addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent the default link behavior
+      
+      // Set the content of the modal
+      document.getElementById('modalProductTitle-card23').textContent = 'Nikleb';
+      document.getElementById('modalProductImage-card23').src = '/src/shop/game-setup/7.webp';
+      document.getElementById('modalProductDescription-card23').textContent = 'Power Strip 23 in 1, 20 Outlets Surge Protector Wall Mount with 2 USB Ports + 1 USB C Port 3.1A Total, Multi Plug Extension Cord 6ft Heavy Duty, Office Desk Accessories for Gaming, Studio';
+      document.getElementById('modalProductPrice-card23').textContent = '500,000 Thousand Naira';
+      
+      // Show the modal
+      document.getElementById('productDetailModal-card23').classList.remove('hidden');
+  });
+
+  // Function to close the modal
+  document.getElementById('closeProductModal-card23').addEventListener('click', function() {
+      document.getElementById('productDetailModal-card23').classList.add('hidden');
+  });
+});
+</script>
+
+          </div>
+     <!-- Arrows for Navigation (Visible on Large Screens) -->
+     <div class="hidden lg:flex items-center justify-between absolute top-1/2 w-full transform -translate-y-1/2">
+        <div class="arrow arrow-left" onclick="slideGameLeft()">&#9664;</div>
+        <div class="arrow arrow-right" onclick="slideGameRight()">&#9654;</div>
+    </div>
+    </div>
+          </div>
+
+          <script>
+    //this is the code responsible for the id="GameSlider"
+    const GameSlider = document.getElementById('GameSlider');
+
+    function slideGameLeft() {
+        GameSlider.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+
+    function slideGameRight() {
+        GameSlider.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+          </script>
+               </div>
+      
+
+
+
+                <div class="bg-black opacity-95 h-auto p-10 text-white">
+        <div class="lg:flex md:flex sm:grid-flow-row justify-around">
+          <div>
+            <p class="text-2xl ">
+              Contact Us</p>
+            <br />
+            <p class="md:text-1xl lg:text-sm md:w-44">
+              City center, Gimbiya street, Area 11, Abuja, Nigeria
+            </p>
+            <br />
+            <p class="md:text-1xl lg:text-sm md:w-44">
+              CA 900211 Tel: +123 9039 550 193
+            </p>
+            <br />
+            <div class="flex">
+              <a href="https://www.instagram.com/">
+                <img
+                  class="w-full p-1 h-8 object-cover sm:w-6 md:w-8 lg:w-10"
+                  src="/src/images/pic13.png"
+                  alt=""
+              /></a>
+              <a href="https://www.facebook.com">
+                <img
+                  class="w-full p-1 h-8 object-cover sm:w-6 md:w-8 lg:w-10"
+                  src="/src/images/pic12.png"
+                  alt=""
+              /></a>
+              <a href="https://x.com/">
+                <img
+                  class="w-full bg-white h-8 object-cover sm:w-6 md:w-8 lg:w-10"
+                  src="/src/images/pic14.png"
+                  alt=""
+              /></a>
+            </div>
+          </div>
+          <div>
+            <h2 class="text-2xl ">Customer Service</h2>
+            <br />
+            <a href="/contact-us/contact.html">
+            <p class="md:text-1xl lg:text-sm md:w-44 text-orange-500">Contact Us </a > ><span>  <a class="text-white" href="#"> /  Shipping ></a></span> </p>
+            <br />
+            <a href="#">
+              <p class="md:text-1xl lg:text-sm md:w-44 text-orange-500">Returns </a > ><span>  <a class="text-white" href="#"> / Payment & Warranty >
+
+              </a></span> </p>
+            <br />
+          
+       
+          </div>
+          <div>
+          <h2 class="text-2xl ">We Accept</h2>
+          <br>
+          <div class="flex">
+            <img
+                  class="w-full bg-white h-8 object-cover sm:w-6 md:w-8 lg:w-10"
+                  src="/src/images/visa.png"
+                  alt=""/>
+                  <img
+                  class="w-full p-1 h-8 object-cover sm:w-6 md:w-8 lg:w-10"
+                  src="/src/images/card.png"
+                  alt=""/>
+          </div>
+          </div>
+        </div>
+               </div>
+             </div>
+              <script src="/src/shop/shop.js"></script>
+   </body>
+</html>

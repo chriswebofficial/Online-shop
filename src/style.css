@@ -1,0 +1,15 @@
+.num1{
+     
+        background: rgba(7, 7, 7, 0.7) url(/src/images/pic1.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height:auto;
+        padding: 3rem;
+        background-blend-mode: overlay;
+        background-attachment: fixed;
+      
+}
+body{
+    font-family: sans-serif;
+}

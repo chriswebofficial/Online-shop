@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/contact-us/contact.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+  </head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="md:flex md:justify-between bg-black fixed w-full z-10">
+        <div class="flex items-center justify-between p-4">
+            <a class="text-white text-2xl font-bold" href="/src/index.html">
+                G <span class="text-orange-500 text-4xl">I</span> X
+            </a>
+
+            <button id="menu-btn" class="text-white block md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <ul id="menu"
+            class="hidden flex-col md:flex md:flex-row md:items-center md:space-x-4 bg-black md:bg-transparent w-full md:w-auto absolute top-full left-0 md:static">
+            <li class="mx-2">
+                <a href="/src/index.html" class="block text-white hover:underline py-2 px-4">Home</a>
+            </li>
+            <li class="mx-2">
+                <a href="/src/shop/Shop.html" class="block text-white hover:underline py-2 px-4">Shop</a>
+            </li>
+        
+            <li class="mx-2">
+                <a href="#" class="block text-white hover:underline py-2 px-4">Contact Us</a>
+            </li>
+        </ul>
+    </nav>
+
+    <script>
+        // Hamburger menu toggle
+        const menuBtn = document.getElementById("menu-btn");
+        const menu = document.getElementById("menu");
+
+        menuBtn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+    </script>
+<div>
+    <!-- Contact Us Section -->
+    <div class="num2">
+        <div class="text-center p-4 pt-20 sm:pt-24 md:pt-32 lg:pt-36 xl:pt-40 ">
+            <h2 class="text-white font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+                Contact Us
+            </h2>
+         
+        </div>
+        
+    </div>
+
+    <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md">
+        <p class="text-gray-800 font-bold mb-6 text-center text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
+            We’re here to help!
+        </p>
+        
+     <form id="contactForm" novalidate>
+            
+         <div class="mb-4">
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" id="name" name="name"
+                    class="mt-1 p-2 block w-full border border-orange-500 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500"
+                    required>
+                <p id="nameError" class="text-red-500 text-xs mt-1 hidden">Name is required.</p>
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email"
+                class="mt-1 p-2 block w-full border border-orange-500 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500"
+                    required>
+                <p id="emailError" class="text-red-500 text-xs mt-1 hidden">Valid email is required.</p>
+            </div>
+            <div class="mb-4">
+                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                <textarea id="message" name="message" rows="4"
+                    class="mt-1 p-2 block w-full border border-orange-500 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500"
+                    required></textarea>
+                <p id="messageError" class="text-red-500 text-xs mt-1 hidden">Message is required.</p>
+            </div>
+            <button type="submit"
+                class="w-full py-2 px-4 bg-orange-500 text-white hover:bg-slate-300 hover:text-black font-semibold rounded-md shadow duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Submit
+            </button>
+        </form>
+    
+        <!--this is the light box Modal -->
+    <div id="thankYouModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-20">
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm mx-auto text-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Thank you for contacting us!</h2>
+                <p class="text-gray-700 mb-6">We have received your message and will get back to you shortly.</p>
+                    <button id="closeModal" class="py-2 px-4 bg-orange-500 text-white hover:bg-orange-600 font-semibold rounded-md shadow duration-300 focus:outline-none">
+                    Okay
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+    
+            // Clear previous error messages
+            document.getElementById('nameError').classList.add('hidden');
+            document.getElementById('emailError').classList.add('hidden');
+            document.getElementById('messageError').classList.add('hidden');
+    
+            let valid = true;
+    
+            // Name validation
+            const name = document.getElementById('name').value.trim();
+            if (name === '') {
+                valid = false;
+                document.getElementById('nameError').classList.remove('hidden');
+            }
+    
+            // Email validation
+            const email = document.getElementById('email').value.trim();
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (email === '' || !emailPattern.test(email)) {
+                valid = false;
+                document.getElementById('emailError').classList.remove('hidden');
+            }
+    
+            // Message validation
+            const message = document.getElementById('message').value.trim();
+            if (message === '') {
+                valid = false;
+                document.getElementById('messageError').classList.remove('hidden');
+            }
+    
+            if (valid) {
+                // Show modal if the form is valid
+                document.getElementById('thankYouModal').classList.remove('hidden');
+    
+                // Reset the form
+                document.getElementById('contactForm').reset();
+            }
+        });
+    
+        // Close modal when the "Okay" button is clicked
+        document.getElementById('closeModal').addEventListener('click', function () {
+            document.getElementById('thankYouModal').classList.add('hidden');
+        });
+    </script>
+    
+    
+
+<div class="bg-white p-3 h-auto ">
+    <div class="lg:flex md:flex sm:grid-flow-row justify-around">
+        <div>
+            <p class="font-bold">
+             Address:</p>
+             <p class="md:text-1xl lg:text-sm md:w-44 ">
+                City center, Gimbiya street, Area 11, Abuja, Nigeria
+              </p>
+    </div>
+
+    <div>
+            <p class="font-bold">
+                Call us 24/7:</p>
+                 <p class="md:text-1xl lg:text-sm md:w-44 ">
+                    Tel: +123 9039 550 193
+                  </p>
+                  <p>Or email us : <a class="text-orange-500" href="mailto:christoonz221@gmail.com"> Tap here</a>
+
+                  </p>
+            </div>
+            <div>
+                <p class="font-bold">
+                     </p>
+                     <p class="md:text-1xl lg:text-sm md:w-44 ">
+                        Questions? <a class="text-orange-500" href="#">clickon our email ></a> 
+                      </p>
+                </div>
+        </div>
+    </div>
+    
+    <div class="bg-black opacity-95 h-auto p-10 text-white">
+        <div class="lg:flex md:flex sm:grid-flow-row justify-around">
+          <div>
+            <p class="text-2xl ">
+              Contact Us</p>
+            <br />
+            <p class="md:text-1xl lg:text-sm md:w-44">
+              City center, Gimbiya street, Area 11, Abuja, Nigeria
+            </p>
+            <br />
+            <p class="md:text-1xl lg:text-sm md:w-44">
+              CA 900211 Tel: +123 9039 550 193
+            </p>
+            <br />
+            <div class="flex">
+              <a href="https://www.instagram.com/">
+                <img
+                  class="w-full p-1 h-8 object-cover sm:w-6 md:w-8 lg:w-10"
+                  src="/src/images/pic13.png"
+                  alt=""
+              /></a>
+              <a href="https://www.facebook.com">
+                <img
+                  class="w-full p-1 h-8 object-cover sm:w-6 md:w-8 lg:w-10"
+                  src="/src/images/pic12.png"
+                  alt=""
+              /></a>
+              <a href="https://x.com/">
+                <img
+                  class="w-full bg-white h-8 object-cover sm:w-6 md:w-8 lg:w-10"
+                  src="/src/images/pic14.png"
+                  alt=""
+              /></a>
+            </div>
+          </div>
+          <div>
+            <h2 class="text-2xl ">Customer Service</h2>
+            <br />
+            <a href="/contact-us/contact.html">
+            <p class="md:text-1xl lg:text-sm md:w-44 text-orange-500">Contact Us </a > ><span>  <a class="text-white" href="#"> /  Shipping ></a></span> </p>
+            <br />
+            <a href="#">
+              <p class="md:text-1xl lg:text-sm md:w-44 text-orange-500">Returns </a > ><span>  <a class="text-white" href="#"> / Payment & Warranty >
+
+              </a></span> </p>
+            <br />
+          
+       
+          </div>
+          <div>
+          <h2 class="text-2xl ">We Accept</h2>
+          <br>
+          <div class="flex">
+            <img
+                  class="w-full bg-white h-8 object-cover sm:w-6 md:w-8 lg:w-10"
+                  src="/src/images/visa.png"
+                  alt=""/>
+                  <img
+                  class="w-full p-1 h-8 object-cover sm:w-6 md:w-8 lg:w-10"
+                  src="/src/images/card.png"
+                  alt=""/>
+          </div>
+          </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
